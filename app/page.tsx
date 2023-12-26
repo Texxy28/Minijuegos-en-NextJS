@@ -26,7 +26,7 @@ export default function Home() {
     },
     {
       id: 4,
-      nombre: "Snake",
+      nombre: "Space Invaders",
       icon: <Gamepad2 />,
       ruta: "snake"
     },

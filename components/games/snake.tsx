@@ -1,24 +1,16 @@
+import { useDraw } from "@/hooks/useDraw"
+import React from "react";
 import { useEffect, useRef } from "react"
 
 export function SnakeGame() {
 
-    const canvasRef = useRef<HTMLCanvasElement>(null)
-
-    useEffect(() => {
-        const canvas = canvasRef.current
-        const context = canvas?.getContext('2d')
-        //Our first draw
-
-        if (context != null) {
-            context.fillStyle = 'white'
-            context.fillRect(0, 0, context.canvas.width, context.canvas.height)
-        }
-
-    }, [])
+    const { canvasRef } = useDraw();
 
     return (
 
-        <canvas ref={canvasRef} width={500} height={500} className="mt-6"></canvas>
+        <React.StrictMode>
+            <canvas ref={canvasRef} width={500} height={500} className="mt-6"></canvas>
+        </React.StrictMode>
 
     )
 
