@@ -26,7 +26,7 @@ export function GameSelection({
 
     return (
 
-        <Button variant="outline" className='flex h-auto flex-col items-center' onClick={onClick}>
+        <Button variant="outline" className='flex h-20 w-20 flex-col items-center whitespace-break-spaces' onClick={onClick}>
             <div>{icon}</div>
             {nombre}
         </Button>
