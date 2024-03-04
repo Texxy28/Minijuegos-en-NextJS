@@ -1,5 +1,5 @@
 import { useDraw } from "@/hooks/useDraw"
-import React from "react";
+import React, { KeyboardEventHandler, useReducer } from "react";
 
 export function SnakeGame() {
 
@@ -7,7 +7,13 @@ export function SnakeGame() {
 
     return (
         
-        <canvas ref={canvasRef} width={500} height={500} className="border-white border"></canvas>
+        <canvas 
+            ref={canvasRef} 
+            width={500} 
+            height={500} 
+            className="border-white border"
+        >
+        </canvas>
 
     )
 

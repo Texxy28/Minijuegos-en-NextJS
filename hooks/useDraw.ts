@@ -50,6 +50,8 @@ export const useDraw = () => {
             xVelocity = xInputVelocity;
             yVelocity = yInputVelocity;
 
+            console.log("dsahoasal")
+
             checkMovement();
 
             changePosition();
@@ -167,6 +169,13 @@ export const useDraw = () => {
             }
 
             gameOver = checkBodyCollision()!;
+
+            if (gameOver) {
+
+                context!.fillStyle = "red"
+                context!.fillRect(10, 10, 20, 40);
+
+            }
 
             return gameOver;
 
