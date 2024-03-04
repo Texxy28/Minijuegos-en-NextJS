@@ -219,6 +219,7 @@ export const useDraw = () => {
 
             snakeBodyParts.splice(0, snakeBodyParts.length);
             bodyLength = 2;
+            points = 0;
 
             const random2 = Math.floor(Math.random() * tiles);
 

@@ -23,7 +23,7 @@ export default function Juegos() {
 
                 <div className='flex flex-col w-full h-full p-16 relative'>
 
-                    <button className="absolute top-7 left-7" onClick={onClickArrow}>
+                    <button className="absolute top-7 left-7 hover:bg-[#1E293B] rounded-full w-10 h-10 flex justify-center items-center" onClick={onClickArrow}>
                         <ArrowLeft />
                     </button>
 
