@@ -22,6 +22,7 @@ export const useDraw = () => {
 
         const snakeBodyParts: SnakeBodyPart[] = [];
         let bodyLength = 2;
+        let points = 0;
 
         let headX = 1;
         let headY = 1;
@@ -45,12 +46,12 @@ export const useDraw = () => {
         let appleX = random;
         let appleY = random;
 
+        let timeout: ReturnType<typeof setTimeout>;
+
         const draw = () => {
 
             xVelocity = xInputVelocity;
             yVelocity = yInputVelocity;
-
-            console.log("dsahoasal")
 
             checkMovement();
 
@@ -67,7 +68,7 @@ export const useDraw = () => {
             drawApple();
             drawSnake();
 
-            setTimeout(draw, 1000 / speed);
+            timeout = setTimeout(draw, 1000 / speed);
 
         }
 
@@ -84,6 +85,9 @@ export const useDraw = () => {
         const clearScreen = () => {
             context!.fillStyle = 'black'
             context!.fillRect(0, 0, context!.canvas.width, context!.canvas.height)
+            context!.fillStyle = "white";
+            context!.font = "20px serif"
+            context!.fillText(points.toString(), 10, 20)
         }
 
         const drawSnake = () => {
@@ -104,6 +108,18 @@ export const useDraw = () => {
                 context.fillRect((headX * tileSize) + 2.5, (headY * tileSize) + 2.5, tileSize-4, tileSize-4)
 
             }
+        }
+
+        const redrawSnake = () => {
+
+            if (context) {
+                context.fillStyle = "#47eb38"
+
+                context.fillStyle = "#5e7a2c"
+                context.fillRect((headX * tileSize) + 2.5, (headY * tileSize) + 2.5, tileSize-4, tileSize-4)
+
+            }
+
         }
 
         const drawApple = () => {
@@ -133,6 +149,7 @@ export const useDraw = () => {
                 appleX = random;
                 appleY = random;
                 bodyLength++;
+                points++;
             }
             for (let index = 0; index < snakeBodyParts.length; index++) {
                 let part = snakeBodyParts[index];
@@ -172,12 +189,48 @@ export const useDraw = () => {
 
             if (gameOver) {
 
-                context!.fillStyle = "red"
-                context!.fillRect(10, 10, 20, 40);
+                context!.fillStyle = "white"
+                context!.fillRect(50, context!.canvas.height/2-50, context!.canvas.width-100, 100);
+                context!.fillStyle = "black"
+                context!.fillText("Game Over", context!.canvas.width/2-45, context!.canvas.height/2)
+                context!.font = "15px serif"
+                context!.fillText("'r' para reintentar", context!.canvas.width/2-50, context!.canvas.height/2+15)
 
             }
 
             return gameOver;
+
+        }
+        
+        const redraw = () => {
+
+            xVelocity = 0;
+            yVelocity = 0;
+
+            xPreviousVelocity = 0;
+            yPreviousVelocity = 0;
+
+            xInputVelocity = 0;
+            yInputVelocity = 0;
+
+            const random = Math.floor(Math.random() * tiles);
+            appleX = random;
+            appleY = random;
+
+            snakeBodyParts.splice(0, snakeBodyParts.length);
+            bodyLength = 2;
+
+            const random2 = Math.floor(Math.random() * tiles);
+
+            headX = random2;
+            headY = random2;
+
+            drawApple();
+            redrawSnake();
+            clearScreen();
+            
+            clearTimeout(timeout);
+            draw();
 
         }
 
@@ -224,6 +277,10 @@ export const useDraw = () => {
             if (e.key === "ArrowLeft") {
                 xInputVelocity = -1;
                 yInputVelocity = 0;
+            }
+
+            if (e.key === "R" || e.key === "r") {
+                redraw();
             }
 
         }
