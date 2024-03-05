@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 
-export const useDraw = () => {
+export const useDrawSnake = () => {
 
     const canvasRef = useRef<HTMLCanvasElement>(null)
 

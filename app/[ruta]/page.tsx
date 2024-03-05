@@ -1,6 +1,7 @@
 "use client"
 
 import { SnakeGame } from "@/components/games/snake";
+import { TetrisGame } from "@/components/games/tetris";
 import { ArrowLeft } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -34,8 +35,10 @@ export default function Juegos() {
                     </div>
 
                     <div className='flex w-full h-auto justify-center items-center'>
-                        {pathname === "/snake" && (
+                        {pathname === "/snake" ? (
                             <SnakeGame/>
+                        ) : (
+                            <TetrisGame/>
                         )}
                     </div>
 

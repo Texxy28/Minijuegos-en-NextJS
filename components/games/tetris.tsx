@@ -1,9 +1,9 @@
-import { useDrawSnake } from "@/hooks/useDrawSnake"
+import { useDrawTetris } from "@/hooks/useDrawTetris"
 import React, { KeyboardEventHandler, useReducer } from "react";
 
-export function SnakeGame() {
+export function TetrisGame() {
 
-    const { canvasRef } = useDrawSnake();
+    const { canvasRef } = useDrawTetris();
 
     return (
         
